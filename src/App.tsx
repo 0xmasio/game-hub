@@ -1,16 +1,10 @@
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
-import { Button } from '@chakra-ui/react';
-import { ColorModeButton, useColorMode } from '@/components/ui/color-mode';
 
 function App() {
-
-
     return (
         <>
-
-            
-            <ColorModeButton></ColorModeButton>
+            {/* <ColorModeButton></ColorModeButton> */}
             <Grid
                 templateAreas={{
                     base: `"nav" "main"`,
@@ -20,15 +14,10 @@ function App() {
                 <GridItem area="nav">
                     <NavBar></NavBar>
                 </GridItem>
-                <GridItem
-                    area="aside"
-                    display={{ base: 'none', lg: 'block' }}
-                >
+                <GridItem area="aside" display={{ base: 'none', lg: 'block' }}>
                     Aside
                 </GridItem>
-                <GridItem area="main" >
-                    Main
-                </GridItem>
+                <GridItem area="main">Main</GridItem>
             </Grid>
         </>
     );
