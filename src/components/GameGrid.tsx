@@ -1,14 +1,14 @@
 import useGames, { type Platform } from '@/hooks/useGames';
-import {  SimpleGrid, Text } from '@chakra-ui/react';
+import { SimpleGrid, Text } from '@chakra-ui/react';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
 import type { GameQuary } from '@/App';
 
 interface Props {
-    gameQuary: GameQuary
+    gameQuary: GameQuary;
 }
 
-const GameGrid = ({  gameQuary }: Props) => {
+const GameGrid = ({ gameQuary }: Props) => {
     const { data, error, isLoading } = useGames(gameQuary);
     const skeletons = [1, 2, 3, 4, 5, 6];
 
@@ -19,7 +19,7 @@ const GameGrid = ({  gameQuary }: Props) => {
                 columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
                 gap={20}
                 padding="10px"
-                columnGap={3}
+                columnGap={6}
                 rowGap={3}
             >
                 {isLoading &&

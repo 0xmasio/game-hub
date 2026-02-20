@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react';
 
 interface Props {
     onSelectSortOrder: (order: string) => void;
-    sortOrder: string;
+    sortOrder: string | null;
 }
 
 const SortSelector = ({ onSelectSortOrder, sortOrder }: Props) => {

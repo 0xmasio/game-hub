@@ -7,11 +7,13 @@ import type { Genre } from './hooks/useGenres';
 import PlatformSelector from './components/PlatformSelector';
 import type { Platform } from './hooks/useGames';
 import SortSelector from './components/SortSelector';
+import GameHeading from './components/GameHeading';
 
 export interface GameQuary {
     genre: Genre | null;
     platform: Platform | null;
-    sortOrder: string;
+    sortOrder: string | null;
+    searchText: string;
 }
 
 function App() {
@@ -31,7 +33,14 @@ function App() {
                 }}
             >
                 <GridItem area="nav">
-                    <NavBar></NavBar>
+                    <NavBar
+                        onSearchInput={(searchText) =>
+                            setGameQuary({
+                                ...gameQuary,
+                                searchText /*, platform:null, sortOrder:null*/,
+                            })
+                        }
+                    ></NavBar>
                 </GridItem>
                 <GridItem
                     area="aside"
@@ -46,6 +55,7 @@ function App() {
                     ></GenreList>
                 </GridItem>
                 <GridItem area="main">
+                    <GameHeading gameQuary={gameQuary}></GameHeading>
                     <HStack spaceX={4} paddingLeft={2} marginBottom={5}>
                         <PlatformSelector
                             selectedPlatform={gameQuary.platform}
@@ -53,7 +63,12 @@ function App() {
                                 setGameQuary({ ...gameQuary, platform })
                             }
                         ></PlatformSelector>
-                        <SortSelector sortOrder={gameQuary.sortOrder} onSelectSortOrder={(sortOrder) => setGameQuary({...gameQuary, sortOrder})}></SortSelector>
+                        <SortSelector
+                            sortOrder={gameQuary.sortOrder}
+                            onSelectSortOrder={(sortOrder) =>
+                                setGameQuary({ ...gameQuary, sortOrder })
+                            }
+                        ></SortSelector>
                     </HStack>
                     <GameGrid gameQuary={gameQuary} />
                 </GridItem>

@@ -19,7 +19,7 @@ const ColorModeSwitch = () => {
             <Switch.Root onCheckedChange={toggleColorMode} colorPalette="cyan" size="md">
                 <Switch.HiddenInput />
                 <Switch.Control />
-                <Switch.Label >{colorMode === "dark" ? "Dark Mode" : "Light Mode"}</Switch.Label>
+                <Switch.Label whiteSpace="nowrap">{colorMode === "dark" ? "Dark Mode" : "Light Mode"}</Switch.Label>
             </Switch.Root>
         </HStack>
     );

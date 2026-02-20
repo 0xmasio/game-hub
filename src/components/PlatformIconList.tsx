@@ -16,7 +16,7 @@ interface Props {
     platforms: Platform[];
 }
 const PlatformIconList = ({ platforms }: Props) => {
-    const icopnMap = {
+    const iconMap = {
         // based on slug
         pc: FaWindows,
         playstation: FaPlaystation,
@@ -31,7 +31,7 @@ const PlatformIconList = ({ platforms }: Props) => {
     return (
         <HStack marginY={'10px'}>
             {platforms.map((platform) => {
-                const IconComponent = icopnMap[platform.slug];
+                const IconComponent = iconMap[platform.slug];
 
                 // اگر اسلاگ پلتفرم (مثل sega) در نقشه ما نبود، چیزی رندر نکن
                 if (!IconComponent) return null;
