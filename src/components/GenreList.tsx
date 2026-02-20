@@ -2,11 +2,12 @@ import useGenres, { type Genre } from '@/hooks/useGenres';
 import getCroppedImageUrl from '@/services/image-url';
 import { Button, HStack, Image, List, Spinner, Text } from '@chakra-ui/react';
 
-interface Props{
-  onSelectGenre: (genre: Genre) => void
+interface Props {
+    onSelectGenre: (genre: Genre) => void;
+    selectedGenre: Genre | null;
 }
 
-const GenreList = ({onSelectGenre}: Props) => {
+const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
     const { data, isLoading, error } = useGenres();
 
     if (error) return null;
@@ -22,7 +23,18 @@ const GenreList = ({onSelectGenre}: Props) => {
                             boxSize="32px"
                             borderRadius={8}
                         ></Image>
-                        <Button fontSize="lg" variant="ghost" onClick={() => onSelectGenre(genre)}>{genre.name}</Button>
+                        <Button
+                            fontSize="lg"
+                            variant="ghost"
+                            onClick={() => onSelectGenre(genre)}
+                            fontWeight={genre.id === selectedGenre?.id? "bold" : "normal"}
+                            _hover={{
+                                textDecoration: 'underline',
+                                bg: 'transparent', // اگر می‌خواهید پس‌زمینه خاکستری دکمه حذف شود
+                            }}
+                        >
+                            {genre.name}
+                        </Button>
                     </HStack>
                 </List.Item>
             ))}

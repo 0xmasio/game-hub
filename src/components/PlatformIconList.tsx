@@ -16,7 +16,8 @@ interface Props {
     platforms: Platform[];
 }
 const PlatformIconList = ({ platforms }: Props) => {
-    const icopnMap = { // based on slug
+    const icopnMap = {
+        // based on slug
         pc: FaWindows,
         playstation: FaPlaystation,
         xbox: FaXbox,
@@ -25,13 +26,22 @@ const PlatformIconList = ({ platforms }: Props) => {
         android: FaAndroid,
         nintendo: SiNintendo,
         ios: MdPhoneIphone,
-        web: BsGlobe
+        web: BsGlobe,
     };
     return (
-        <HStack marginY={"10px"}>
-            {platforms.map((platform) => (
-                <Icon key={platform.id} as={icopnMap[platform.slug]} color="gray.500"></Icon>
-            ))}
+        <HStack marginY={'10px'}>
+            {platforms.map((platform) => {
+                const IconComponent = icopnMap[platform.slug];
+
+                // اگر اسلاگ پلتفرم (مثل sega) در نقشه ما نبود، چیزی رندر نکن
+                if (!IconComponent) return null;
+
+                return (
+                    <Icon key={platform.id} color="gray.500" asChild>
+                        <IconComponent />
+                    </Icon>
+                );
+            })}
         </HStack>
     );
 };
