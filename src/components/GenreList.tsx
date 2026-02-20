@@ -16,6 +16,7 @@ interface Props {
 }
 
 const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
+    
     const { data, isLoading, error } = useGenres();
 
     if (error) return null;
@@ -23,7 +24,9 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
 
     return (
         <>
-            <Heading fontSize="xl" marginBottom={3}>Genres</Heading>
+            <Heading fontSize="xl" marginBottom={3}>
+                Genres
+            </Heading>
             <List.Root listStyleType="none">
                 {data.map((genre) => (
                     <List.Item key={genre.id} paddingY="5px">
